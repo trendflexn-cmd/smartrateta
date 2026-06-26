@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your cryptocurrency trading profit or loss.">
+  <title>Crypto Profit/Loss Calculator - Smart Rate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="calculator.css">
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Crypto P/L Calculator</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Crypto Profit/Loss Calculator</h1>
+      <p>Calculate your cryptocurrency trading gains or losses</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="quantity">Quantity (Coins)</label>
+          <input type="number" id="quantity" min="0" step="0.00000001" value="1" required>
+        </div>
+        <div class="form-group">
+          <label for="buy-price">Buy Price per Coin (₹)</label>
+          <input type="number" id="buy-price" min="0" step="0.01" value="1500000" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="sell-price">Sell Price per Coin (₹)</label>
+          <input type="number" id="sell-price" min="0" step="0.01" value="2000000" required>
+        </div>
+        <div class="form-group">
+          <label for="transaction-fee">Transaction Fee (%)</label>
+          <input type="number" id="transaction-fee" min="0" max="10" step="0.01" value="1" required>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="calculate()">Calculate</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box">
+          <div class="result-label">Total Cost</div>
+          <div class="result-value" id="result-cost">₹ 0</div>
+        </div>
+        <div class="result-box secondary">
+          <div class="result-label">Sale Value</div>
+          <div class="result-value" id="result-value">₹ 0</div>
+        </div>
+        <div class="result-box" id="result-box-profit">
+          <div class="result-label">Profit/Loss</div>
+          <div class="result-value" id="result-pnl">₹ 0</div>
+          <div class="result-description" id="result-percent">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="investment-growth.html">Investment Growth</a></div>
+        <div class="related-item"><a href="compound-interest.html">Compound Interest</a></div>
+        <div class="related-item"><a href="currency-converter.html">Currency Converter</a></div>
+      </div>
+    </div>
+  </div>
+ <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+  <h3 style="margin-bottom: 1.5rem;">❓ How Crypto Profit/Loss Works</h3>
+  <div class="faq-item">
+    <button class="faq-question">
+      What does this calculator do?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p>It calculates your net profit or loss from a cryptocurrency trade. You enter the number of coins, buy price, sell price, and any transaction fees. The result shows your total profit/loss and the return percentage.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      How do I enter my trade details?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p>Fill in the quantity (coins bought), the buy price per coin, the sell price per coin, and the transaction fee percentage (e.g., 1% for exchange fees). Click "Calculate" to see the outcome.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      Does it include fees in the calculation?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p>Yes. The calculator subtracts the fee percentage from your total sale value before computing profit/loss, so you see the actual net result.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      What formula is used?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p><strong>Profit = (Sell Price × Quantity) − (Buy Price × Quantity) − Fees</strong><br>
+      Where Fees = (Sell Price × Quantity) × (Fee% / 100).</p>
+    </div>
+  </div>
+</div>
+
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/faq.js"></script>
+  <script>
+    function calculate() {
+      const quantity = SmartRate.parseNumberInput(document.getElementById('quantity').value);
+      const buyPrice = SmartRate.parseNumberInput(document.getElementById('buy-price').value);
+      const sellPrice = SmartRate.parseNumberInput(document.getElementById('sell-price').value);
+      const transactionFee = SmartRate.parseNumberInput(document.getElementById('transaction-fee').value);
+      
+      const totalCost = quantity * buyPrice;
+      const saleValue = quantity * sellPrice;
+      const fees = SmartRate.calculatePercentage(saleValue, transactionFee);
+      const netValue = saleValue - fees;
+      const profit = netValue - totalCost;
+      const profitPercent = ((profit / totalCost) * 100).toFixed(2);
+      
+      document.getElementById('result-cost').textContent = SmartRate.formatCurrency(totalCost);
+      document.getElementById('result-value').textContent = SmartRate.formatCurrency(netValue);
+      document.getElementById('result-pnl').textContent = SmartRate.formatCurrency(profit);
+      document.getElementById('result-percent').textContent = profitPercent + '%';
+      
+      const resultBox = document.getElementById('result-box-profit');
+      if (profit >= 0) {
+        resultBox.className = 'result-box success';
+      } else {
+        resultBox.className = 'result-box warning';
+      }
+      
+      SmartRate.showResults(document.querySelector('.calculator-results'));
+    }
+  </script>
+</body>
+</html>

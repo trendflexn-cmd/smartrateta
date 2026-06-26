@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plan your retirement with our retirement calculator. Calculate how much you need to save for retirement.">
+  <meta name="keywords" content="retirement calculator, retirement planning, retirement savings">
+  <meta name="robots" content="index, follow">
+  <title>Retirement Calculator - Smart Rate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calculator.css">
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Retirement Calculator</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Retirement Calculator</h1>
+      <p>Calculate how much you need to save for a comfortable retirement</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="age">Current Age</label>
+          <input type="number" id="age" min="18" max="100" value="30" required>
+        </div>
+        <div class="form-group">
+          <label for="retirement-age">Retirement Age</label>
+          <input type="number" id="retirement-age" min="40" max="100" value="60" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="current-savings">Current Savings (₹)</label>
+          <input type="number" id="current-savings" min="0" step="10000" value="500000" required>
+        </div>
+        <div class="form-group">
+          <label for="monthly-contribution">Monthly Contribution (₹)</label>
+          <input type="number" id="monthly-contribution" min="0" step="1000" value="10000" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="annual-return">Expected Annual Return (%)</label>
+          <input type="number" id="annual-return" min="0" max="50" step="0.1" value="7" required>
+        </div>
+        <div class="form-group">
+          <label for="life-expectancy">Life Expectancy (Age)</label>
+          <input type="number" id="life-expectancy" min="60" max="120" value="85" required>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="calculateRetirement()">Calculate</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box">
+          <div class="result-label">Corpus at Retirement</div>
+          <div class="result-value" id="result-corpus">0</div>
+          <div class="result-description">Total savings by retirement age</div>
+        </div>
+        <div class="result-box success">
+          <div class="result-label">Retirement Duration</div>
+          <div class="result-value" id="result-duration">0</div>
+          <div class="result-description">Years in retirement</div>
+        </div>
+        <div class="result-box secondary">
+          <div class="result-label">Annual Withdrawal (5%)</div>
+          <div class="result-value" id="result-annual">0</div>
+          <div class="result-description">Safe withdrawal amount</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="compound-interest.html">Compound Interest</a></div>
+        <div class="related-item"><a href="investment-growth.html">Investment Growth</a></div>
+        <div class="related-item"><a href="savings-goal-tracker.html">Savings Goals</a></div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+    <h3>❓ How Retirement Planning Works</h3>
+    <div class="faq-item">
+      <button class="faq-question">
+        What does this retirement calculator do?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>It estimates the total retirement corpus you’ll accumulate by the time you retire, based on your current savings, monthly contributions, expected return, and time horizon. It also shows how long that corpus might last and a safe annual withdrawal amount (5%).</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I use it?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Enter your current age, desired retirement age, existing savings, how much you contribute every month, and the expected annual return on your investments. Also provide your life expectancy to see the retirement duration.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What is a safe withdrawal rate?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>The calculator uses a 5% annual withdrawal rate, which is a common rule‑of‑thumb for sustainable retirement income. It means you could withdraw 5% of your total corpus each year without exhausting the fund too quickly.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        Does it account for inflation?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>This calculator focuses on nominal returns and the final corpus. For a clearer picture of purchasing power, you can separately use the Inflation Tracker to see how inflation might affect your future withdrawals.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What formula is used?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>The future value of a lump sum plus a series of monthly contributions is computed using the compound interest formula with monthly compounding. The retirement duration is simply the difference between life expectancy and retirement age.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/calculators.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/faq.js"></script>
+  <script>
+    function calculateRetirement() {
+      const age = parseInt(document.getElementById('age').value);
+      const retirementAge = parseInt(document.getElementById('retirement-age').value);
+      const currentSavings = SmartRate.parseNumberInput(document.getElementById('current-savings').value);
+      const monthlyContribution = SmartRate.parseNumberInput(document.getElementById('monthly-contribution').value);
+      const annualReturn = SmartRate.parseNumberInput(document.getElementById('annual-return').value);
+      const lifeExpectancy = parseInt(document.getElementById('life-expectancy').value);
+      
+      if (age >= retirementAge) {
+        alert('Retirement age must be greater than current age');
+        return;
+      }
+      
+      const result = Calculators.calculateRetirement(age, retirementAge, currentSavings, monthlyContribution, annualReturn, 3, lifeExpectancy);
+      
+      document.getElementById('result-corpus').textContent = SmartRate.formatCurrency(result.corpusAtRetirement);
+      document.getElementById('result-duration').textContent = result.yearsOfRetirement + ' years';
+      document.getElementById('result-annual').textContent = SmartRate.formatCurrency((result.corpusAtRetirement * 0.05));
+      
+      SmartRate.showResults(document.querySelector('.calculator-results'));
+    }
+  </script>
+</body>
+</html>

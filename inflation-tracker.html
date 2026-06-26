@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track the impact of inflation on your savings and purchasing power.">
+  <title>Inflation Tracker - Smart Rate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calculator.css">
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Inflation Tracker</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Inflation Tracker</h1>
+      <p>See how inflation affects your money's purchasing power over time</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="amount">Current Amount (₹)</label>
+          <input type="number" id="amount" min="0" step="1000" value="100000" required>
+        </div>
+        <div class="form-group">
+          <label for="inflation">Annual Inflation Rate (%)</label>
+          <input type="number" id="inflation" min="0" max="50" step="0.1" value="5.5" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="years">Period (Years)</label>
+          <input type="number" id="years" min="1" max="50" step="1" value="10" required>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="calculate()">Calculate</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box">
+          <div class="result-label">Current Value</div>
+          <div class="result-value" id="result-current">₹ 0</div>
+        </div>
+        <div class="result-box warning">
+          <div class="result-label">Adjusted Value</div>
+          <div class="result-value" id="result-adjusted">₹ 0</div>
+        </div>
+        <div class="result-box secondary">
+          <div class="result-label">Purchasing Power Lost</div>
+          <div class="result-value" id="result-loss">₹ 0</div>
+          <div class="result-description" id="result-loss-percent">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="compound-interest.html">Compound Interest</a></div>
+        <div class="related-item"><a href="investment-growth.html">Investment Growth</a></div>
+        <div class="related-item"><a href="savings-goal-tracker.html">Savings Goals</a></div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+    <h3>❓ How Inflation Tracking Works</h3>
+    <div class="faq-item">
+      <button class="faq-question">
+        What does this calculator show?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>It tells you the future value of your money after accounting for inflation. You enter a current amount, an annual inflation rate, and a time period. The calculator shows the adjusted (decreased) purchasing power and how much value was lost.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I use it?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Enter the amount of money you have today, the expected inflation rate (e.g., 5.5% per year), and the number of years you want to look ahead. Click Calculate to see how much that money will be worth in today’s terms.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What does “adjusted value” mean?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>It’s the equivalent purchasing power of your current money after the inflation period. For example, ₹1,00,000 today might only buy what ₹58,500 would buy after 10 years at 5.5% inflation.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        Is the inflation rate fixed over the whole period?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>The calculator assumes a constant annual inflation rate for simplicity. Real inflation varies year by year. Use an average rate for the best estimate.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What formula is used?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p><strong>Adjusted Value = Amount / (1 + Inflation Rate)<sup>Years</sup></strong><br>
+        <strong>Loss = Amount − Adjusted Value</strong><br>
+        <strong>Loss % = (Loss / Amount) × 100</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/faq.js"></script>
+  <script src="js/calculators.js"></script>
+  <script>
+    function calculate() {
+      const amount = SmartRate.parseNumberInput(document.getElementById('amount').value);
+      const inflation = SmartRate.parseNumberInput(document.getElementById('inflation').value);
+      const years = parseInt(document.getElementById('years').value);
+      
+      const adjustedAmount = amount / Math.pow(1 + inflation / 100, years);
+      const loss = amount - adjustedAmount;
+      const lossPercent = ((loss / amount) * 100).toFixed(2);
+      
+      document.getElementById('result-current').textContent = SmartRate.formatCurrency(amount);
+      document.getElementById('result-adjusted').textContent = SmartRate.formatCurrency(adjustedAmount);
+      document.getElementById('result-loss').textContent = SmartRate.formatCurrency(loss);
+      document.getElementById('result-loss-percent').textContent = lossPercent + '%';
+      
+      SmartRate.showResults(document.querySelector('.calculator-results'));
+    }
+  </script>
+</body>
+</html>

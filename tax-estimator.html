@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estimate your income tax liability. Free tax calculator for different income levels.">
+  <meta name="keywords" content="tax calculator, tax estimator, income tax">
+  <meta name="robots" content="index, follow">
+  <title>Tax Estimator - Smart Rate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calculator.css">
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Tax Estimator</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Tax Estimator</h1>
+      <p>Estimate your income tax liability based on your annual income</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row full">
+        <div class="form-group">
+          <label for="income">Annual Income (₹)</label>
+          <input type="number" id="income" min="0" step="10000" value="500000" required>
+          <div class="form-error"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="age">Age Category</label>
+          <select id="age">
+            <option value="regular">Regular (< 60 years)</option>
+            <option value="senior">Senior (60-80 years)</option>
+            <option value="super-senior">Super Senior (> 80 years)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="regime">Tax Regime</label>
+          <select id="regime">
+            <option value="new" selected>New Regime (FY 2024-25)</option>
+            <option value="old">Old Regime</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="calculateTax()">Calculate Tax</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box">
+          <div class="result-label">Gross Income</div>
+          <div class="result-value" id="result-income">0</div>
+        </div>
+        <div class="result-box warning">
+          <div class="result-label">Income Tax</div>
+          <div class="result-value" id="result-tax">0</div>
+        </div>
+        <div class="result-box success">
+          <div class="result-label">Take-Home Income</div>
+          <div class="result-value" id="result-takehome">0</div>
+        </div>
+        <div class="result-box secondary">
+          <div class="result-label">Effective Tax Rate</div>
+          <div class="result-value" id="result-rate">0%</div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="salary-breakdown.html">Salary Breakdown</a></div>
+        <div class="related-item"><a href="overtime-calculator.html">Overtime Calculator</a></div>
+        <div class="related-item"><a href="freelancer-income.html">Freelancer Income</a></div>
+      </div>
+    </div>
+  </div>
+     <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+    <h3>❓ How Tax Estimation Works</h3>
+    <div class="faq-item">
+      <button class="faq-question">
+        What does this tax calculator do?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>It estimates your income tax liability based on your annual income and the tax regime you choose. It shows the gross income, tax amount, take‑home income, and effective tax rate.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I use it?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Enter your total annual income, select your age category (for old regime exemptions), and pick either the new or old tax regime. Click Calculate to see the breakdown.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What's the difference between New and Old Regime?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p><strong>New Regime</strong> offers lower tax rates but removes most deductions and exemptions. <strong>Old Regime</strong> has higher rates but allows deductions like 80C, HRA, etc. This calculator gives a basic estimate; for exact calculations, consult a tax professional.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        Does it consider deductions or exemptions?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>No. This is a simplified estimator. It does not factor in deductions (like 80C) or exemptions. Use it as a quick reference, and for detailed planning, use the Salary Breakdown tool or consult a tax advisor.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What tax brackets are used?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p><strong>New Regime (FY 2024-25):</strong><br>
+        Up to ₹4L – 0%, ₹4‑7L – 5%, ₹7‑10L – 10%, ₹10‑12L – 15%, ₹12‑15L – 20%, above ₹15L – 30%.<br>
+        <strong>Old Regime:</strong><br>
+        Up to ₹3L – 0%, ₹3‑5L – 5%, ₹5‑10L – 20%, above ₹10L – 30%.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/calculators.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/faq.js"></script>
+  <script>
+    function calculateTax() {
+      const income = parseFloat(document.getElementById('income').value);
+      const regime = document.getElementById('regime').value;
+      
+      if (income <= 0) {
+        alert('Please enter a valid income');
+        return;
+      }
+      
+      let tax = 0;
+      if (regime === 'new') {
+        // New Regime Tax Brackets FY 2024-25
+        const brackets = [
+          { limit: 400000, rate: 0 },
+          { limit: 700000, rate: 5 },
+          { limit: 1000000, rate: 10 },
+          { limit: 1200000, rate: 15 },
+          { limit: 1500000, rate: 20 },
+          { limit: Infinity, rate: 30 }
+        ];
+        tax = Calculators.calculateTax(income, brackets);
+      } else {
+        // Old Regime Tax Brackets
+        const brackets = [
+          { limit: 300000, rate: 0 },
+          { limit: 500000, rate: 5 },
+          { limit: 1000000, rate: 20 },
+          { limit: Infinity, rate: 30 }
+        ];
+        tax = Calculators.calculateTax(income, brackets);
+      }
+      
+      document.getElementById('result-income').textContent = SmartRate.formatCurrency(income);
+      document.getElementById('result-tax').textContent = SmartRate.formatCurrency(tax);
+      document.getElementById('result-takehome').textContent = SmartRate.formatCurrency(income - tax);
+      const rate = ((tax / income) * 100).toFixed(2);
+      document.getElementById('result-rate').textContent = rate + '%';
+      
+      SmartRate.showResults(document.querySelector('.calculator-results'));
+    }
+  </script>
+</body>
+</html>

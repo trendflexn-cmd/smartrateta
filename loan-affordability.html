@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate how much loan you can afford based on your income. Free loan affordability calculator.">
+  <meta name="keywords" content="loan affordability, how much loan can I get, loan amount calculator">
+  <meta name="robots" content="index, follow">
+  <title>Loan Affordability Calculator - Smart Rate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calculator.css">
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Loan Affordability</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Loan Affordability Calculator</h1>
+      <p>Find out how much loan you can afford based on your monthly income</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="monthly-income">Monthly Income (₹)</label>
+          <input type="number" id="monthly-income" min="0" step="5000" value="50000" required>
+          <div class="form-error"></div>
+        </div>
+        <div class="form-group">
+          <label for="existing-emi">Existing EMI (₹)</label>
+          <input type="number" id="existing-emi" min="0" step="1000" value="0" required>
+          <div class="form-error"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dti-ratio">Debt-to-Income Ratio (%)</label>
+          <input type="number" id="dti-ratio" min="0" max="100" step="1" value="40" required>
+          <div class="form-error"></div>
+          <small style="color: var(--text-light); display: block; margin-top: 0.25rem;">Typically 30-40% of income can go to EMI</small>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="calculateAffordability()">Calculate</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box">
+          <div class="result-label">Maximum Loan Amount</div>
+          <div class="result-value" id="result-max-loan">0</div>
+          <div class="result-description">Maximum you can borrow</div>
+        </div>
+        <div class="result-box success">
+          <div class="result-label">Available EMI Capacity</div>
+          <div class="result-value" id="result-available-emi">0</div>
+          <div class="result-description">Monthly payment capacity</div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="emi-calculator.html">EMI Calculator</a></div>
+        <div class="related-item"><a href="mortgage-calculator.html">Mortgage Calculator</a></div>
+        <div class="related-item"><a href="debt-payoff-planner.html">Debt Payoff Planner</a></div>
+      </div>
+    </div>
+  </div>
+   <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+    <h3>❓ How Loan Affordability Works</h3>
+    <div class="faq-item">
+      <button class="faq-question">
+        What does this calculator tell me?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>It calculates the maximum loan amount you can afford based on your monthly income, any existing EMIs, and the debt‑to‑income (DTI) ratio you set. It shows both the available monthly EMI capacity and the corresponding loan amount.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I use it?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Enter your monthly take‑home income, any EMIs you already pay, and the DTI ratio (typically 30‑40%). Click Calculate to see how much more loan you can afford.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What is a debt‑to‑income (DTI) ratio?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>DTI is the percentage of your monthly income that goes toward debt payments (including the new EMI). Lenders use it to decide whether you can manage additional debt. A lower DTI means you can afford a larger loan.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        Why does the calculator show "Not Eligible"?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>If your existing EMIs already exceed the DTI limit you entered, there is no room for a new loan. You can adjust the DTI or reduce existing EMIs to see different scenarios.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What formula is used?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p><strong>Available EMI = (Monthly Income × DTI Ratio) − Existing EMI</strong><br>
+        <strong>Max Loan = Available EMI × (1 − (1 + r)<sup>−n</sup>) / r</strong><br>
+        where r = monthly interest rate (assumed 8% p.a.), n = loan tenure (assumed 20 years).</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/calculators.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/faq.js"></script>
+  <script>
+    function calculateAffordability() {
+      const income = SmartRate.parseNumberInput(document.getElementById('monthly-income').value);
+      const existingEmi = SmartRate.parseNumberInput(document.getElementById('existing-emi').value) || 0;
+      const dtiRatio = SmartRate.parseNumberInput(document.getElementById('dti-ratio').value) / 100;
+      
+      if (income <= 0) {
+        alert('Please enter a valid income');
+        return;
+      }
+      
+      const result = Calculators.calculateLoanAffordability(income, existingEmi, dtiRatio);
+      
+      if (result.maxLoan <= 0) {
+        document.getElementById('result-max-loan').textContent = 'Not Eligible';
+        document.getElementById('result-available-emi').textContent = '₹ 0';
+      } else {
+        document.getElementById('result-max-loan').textContent = SmartRate.formatCurrency(result.maxLoan);
+        document.getElementById('result-available-emi').textContent = SmartRate.formatCurrency(result.availableEmi);
+      }
+      
+      SmartRate.showResults(document.querySelector('.calculator-results'));
+    }
+  </script>
+</body>
+</html>

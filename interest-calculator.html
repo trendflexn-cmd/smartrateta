@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate simple and compound interest. Free interest calculator for savings and investments.">
+  <meta name="keywords" content="interest calculator, simple interest, compound interest">
+  <meta name="robots" content="index, follow">
+  <title>Interest Calculator - Smart Rate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calculator.css">
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Interest Calculator</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Interest Calculator</h1>
+      <p>Calculate simple and compound interest on your savings or investments</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="principal">Principal Amount (₹)</label>
+          <input type="number" id="principal" min="0" step="1000" value="100000" required>
+        </div>
+        <div class="form-group">
+          <label for="rate">Interest Rate (%)</label>
+          <input type="number" id="rate" min="0" max="100" step="0.01" value="8" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="time">Time Period (Years)</label>
+          <input type="number" id="time" min="0" step="0.1" value="5" required>
+        </div>
+        <div class="form-group">
+          <label for="type">Interest Type</label>
+          <select id="type">
+            <option value="simple">Simple Interest</option>
+            <option value="compound">Compound Interest</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="calculateInterest()">Calculate</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box">
+          <div class="result-label">Principal</div>
+          <div class="result-value" id="result-principal">₹ 0</div>
+        </div>
+        <div class="result-box secondary">
+          <div class="result-label">Interest Earned</div>
+          <div class="result-value" id="result-interest">₹ 0</div>
+        </div>
+        <div class="result-box success">
+          <div class="result-label">Total Amount</div>
+          <div class="result-value" id="result-total">₹ 0</div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="compound-interest.html">Compound Interest</a></div>
+        <div class="related-item"><a href="investment-growth.html">Investment Growth</a></div>
+        <div class="related-item"><a href="emi-calculator.html">EMI Calculator</a></div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+    <h3>❓ How Interest Calculation Works</h3>
+    <div class="faq-item">
+      <button class="faq-question">
+        What's the difference between simple and compound interest?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p><strong>Simple interest</strong> is calculated only on the original principal amount. <strong>Compound interest</strong> is calculated on the principal plus any interest that has already been added – so you earn "interest on interest." Compound interest grows your money faster.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I use this calculator?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Enter the principal (initial amount), the annual interest rate, and the time period in years. Then choose whether you want simple or compound interest. Click Calculate to see the interest earned and the final total amount.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        When should I use simple interest?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Simple interest is often used for short‑term loans, car loans, and some fixed deposits where interest isn't reinvested. It's straightforward: Interest = Principal × Rate × Time.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        When is compound interest used?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Compound interest is common for savings accounts, investment portfolios, and long‑term deposits. It grows your money exponentially because interest is added to the balance at regular intervals (monthly, quarterly, etc.).</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What formulas are used?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p><strong>Simple Interest:</strong> A = P(1 + rt)<br>
+        <strong>Compound Interest:</strong> A = P(1 + r/n)<sup>nt</sup><br>
+        Where P = principal, r = annual rate (decimal), t = years, n = compounding frequency (monthly = 12).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/calculators.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/faq.js"></script>
+  <script>
+    function calculateInterest() {
+      const principal = SmartRate.parseNumberInput(document.getElementById('principal').value);
+      const rate = SmartRate.parseNumberInput(document.getElementById('rate').value);
+      const time = SmartRate.parseNumberInput(document.getElementById('time').value);
+      const type = document.getElementById('type').value;
+      
+      let result;
+      if (type === 'simple') {
+        result = Calculators.calculateSimpleInterest(principal, rate, time);
+      } else {
+        result = Calculators.calculateCompoundInterest(principal, rate, time, 12);
+      }
+      
+      document.getElementById('result-principal').textContent = SmartRate.formatCurrency(principal);
+      document.getElementById('result-interest').textContent = SmartRate.formatCurrency(result.interest);
+      document.getElementById('result-total').textContent = SmartRate.formatCurrency(result.amount);
+      
+      SmartRate.showResults(document.querySelector('.calculator-results'));
+    }
+  </script>
+</body>
+</html>

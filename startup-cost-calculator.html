@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estimate your startup costs and initial investment requirements.">
+  <title>Startup Cost Calculator - Smart Rate</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calculator.css">
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Startup Cost Calculator</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Startup Cost Calculator</h1>
+      <p>Estimate your total startup investment and initial operational costs</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="equipment">Equipment & Tools (₹)</label>
+          <input type="number" id="equipment" min="0" step="10000" value="500000" required>
+        </div>
+        <div class="form-group">
+          <label for="inventory">Inventory & Stock (₹)</label>
+          <input type="number" id="inventory" min="0" step="10000" value="200000" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="property">Property & Lease (₹)</label>
+          <input type="number" id="property" min="0" step="10000" value="300000" required>
+        </div>
+        <div class="form-group">
+          <label for="permits">Permits & Licenses (₹)</label>
+          <input type="number" id="permits" min="0" step="1000" value="50000" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="marketing">Initial Marketing (₹)</label>
+          <input type="number" id="marketing" min="0" step="10000" value="100000" required>
+        </div>
+        <div class="form-group">
+          <label for="professional">Professional Services (₹)</label>
+          <input type="number" id="professional" min="0" step="10000" value="50000" required>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="calculate()">Calculate Total</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box success">
+          <div class="result-label">Total Startup Cost</div>
+          <div class="result-value" id="result-total">0</div>
+          <div class="result-description">Total initial investment</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="profit-margin-calculator.html">Profit Margin</a></div>
+        <div class="related-item"><a href="invoice-estimator.html">Invoice Estimator</a></div>
+        <div class="related-item"><a href="vat-gst-calculator.html">VAT/GST Calculator</a></div>
+      </div>
+    </div>
+  </div>
+   <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+    <h3>❓ How Startup Cost Estimation Works</h3>
+    <div class="faq-item">
+      <button class="faq-question">
+        What does this calculator do?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>It totals your initial investment by adding up several common startup cost categories: equipment, inventory, property/lease, permits, marketing, and professional services.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I use it?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>Enter the estimated cost for each category. You can leave any field as zero if it doesn’t apply. Click Calculate to see your total startup cost.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I add more expense categories?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>This calculator covers the most common startup costs. If you have extra items, you can add them to one of the existing fields (e.g., “Professional Services”) or simply note them separately.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        Is the total exact or an estimate?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p>It’s an estimate based on the numbers you provide. Always include a buffer (10‑20%) for unforeseen expenses and check actual quotes from suppliers.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What formula is used?
+        <span class="faq-icon">▼</span>
+      </button>
+      <div class="faq-answer">
+        <p><strong>Total Startup Cost = Equipment + Inventory + Property & Lease + Permits & Licenses + Marketing + Professional Services</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/faq.js"></script>
+  <script>
+    function calculate() {
+      const equipment = SmartRate.parseNumberInput(document.getElementById('equipment').value);
+      const inventory = SmartRate.parseNumberInput(document.getElementById('inventory').value);
+      const property = SmartRate.parseNumberInput(document.getElementById('property').value);
+      const permits = SmartRate.parseNumberInput(document.getElementById('permits').value);
+      const marketing = SmartRate.parseNumberInput(document.getElementById('marketing').value);
+      const professional = SmartRate.parseNumberInput(document.getElementById('professional').value);
+      
+      const total = equipment + inventory + property + permits + marketing + professional;
+      
+      document.getElementById('result-total').textContent = SmartRate.formatCurrency(total);
+      
+      SmartRate.showResults(document.querySelector('.calculator-results'));
+    }
+  </script>
+</body>
+</html>

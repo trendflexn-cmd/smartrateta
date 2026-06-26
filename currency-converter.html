@@ -1,0 +1,463 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free currency converter. Convert between major world currencies with real-time exchange rates.">
+  <meta name="keywords" content="currency converter, exchange rates, forex calculator">
+  <meta name="robots" content="index, follow">
+  <title>Currency Converter - Smart Rate</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="calculator.css">
+  <!-- Additional luxury styling (no HTML changes) -->
+  <style>
+    /* Subtle glassmorphism upgrade for converter page */
+    .calculator-container {
+      max-width: 850px;
+    }
+    .calculator-form {
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .calculator-form select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 1rem;
+      outline: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .calculator-form select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+    .rate-info {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      opacity: 0.9;
+    }
+    .rate-source {
+      font-weight: 600;
+      color: var(--primary-light);
+    }
+    .convert-animate {
+      animation: scalePop 0.3s ease;
+    }
+    @keyframes scalePop {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .result-grid .result-box {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .result-grid .result-box:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
+    }
+    /* Swap button on mobile */
+    @media (max-width: 600px) {
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+   <!-- AdSense Auto ads – single script for all pages -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">💰 Smart Rate</a>
+        <ul class="navbar-nav">
+          <li><a href="index.html">Calculators</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+        </ul>
+        <div style="display: flex; gap: 1rem;">
+          <button class="theme-toggle">🌙</button>
+          <button class="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-2">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
+      <a href="index.html#categories">Calculators</a> <span class="breadcrumb-separator">/</span>
+      <span>Currency Converter</span>
+    </div>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-header">
+      <h1>Currency Converter</h1>
+      <p>Convert between currencies instantly with current exchange rates</p>
+    </div>
+
+    <form class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01" value="1" required>
+          <div class="form-error"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="from-currency">From Currency</label>
+          <select id="from-currency" required>
+            <option value="USD">USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="INR" selected>INR - Indian Rupee</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="NGN">NGN - Nigerian Naira</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="CHF">CHF - Swiss Franc</option>
+            <option value="CNY">CNY - Chinese Yuan</option>
+            <option value="SEK">SEK - Swedish Krona</option>
+            <option value="NZD">NZD - New Zealand Dollar</option>
+            <option value="MXN">MXN - Mexican Peso</option>
+            <option value="SGD">SGD - Singapore Dollar</option>
+            <option value="HKD">HKD - Hong Kong Dollar</option>
+            <option value="NOK">NOK - Norwegian Krone</option>
+            <option value="KRW">KRW - South Korean Won</option>
+            <option value="TRY">TRY - Turkish Lira</option>
+            <option value="RUB">RUB - Russian Ruble</option>
+            <option value="INR">INR - Indian Rupee</option>
+            <option value="BRL">BRL - Brazilian Real</option>
+            <option value="ZAR">ZAR - South African Rand</option>
+            <option value="AED">AED - UAE Dirham</option>
+            <option value="SAR">SAR - Saudi Arabian Riyal</option>
+            <option value="QAR">QAR - Qatari Riyal</option>
+            <option value="KWD">KWD - Kuwaiti Dinar</option>
+            <option value="BHD">BHD - Bahraini Dinar</option>
+            <option value="OMR">OMR - Omani Rial</option>
+            <option value="JOD">JOD - Jordanian Dinar</option>
+            <option value="ILS">ILS - Israeli Shekel</option>
+            <option value="PKR">PKR - Pakistani Rupee</option>
+            <option value="BDT">BDT - Bangladeshi Taka</option>
+            <option value="LKR">LKR - Sri Lankan Rupee</option>
+            <option value="THB">THB - Thai Baht</option>
+            <option value="MYR">MYR - Malaysian Ringgit</option>
+            <option value="PHP">PHP - Philippine Peso</option>
+            <option value="IDR">IDR - Indonesian Rupiah</option>
+            <option value="VND">VND - Vietnamese Dong</option>
+            <option value="HUF">HUF - Hungarian Forint</option>
+            <option value="CZK">CZK - Czech Koruna</option>
+            <option value="PLN">PLN - Polish Zloty</option>
+            <option value="RON">RON - Romanian Leu</option>
+            <option value="BGN">BGN - Bulgarian Lev</option>
+            <option value="HRK">HRK - Croatian Kuna</option>
+            <option value="ISK">ISK - Icelandic Króna</option>
+            <option value="DKK">DKK - Danish Krone</option>
+            <option value="CLP">CLP - Chilean Peso</option>
+            <option value="COP">COP - Colombian Peso</option>
+            <option value="PEN">PEN - Peruvian Nuevo Sol</option>
+            <option value="ARS">ARS - Argentine Peso</option>
+            <option value="UAH">UAH - Ukrainian Hryvnia</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="to-currency">To Currency</label>
+          <select id="to-currency" required>
+            <option value="USD" selected>USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="INR">INR - Indian Rupee</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+             <option value="NGN">NGN - Nigerian Naira</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="CHF">CHF - Swiss Franc</option>
+            <option value="CNY">CNY - Chinese Yuan</option>
+            <option value="SEK">SEK - Swedish Krona</option>
+            <option value="NZD">NZD - New Zealand Dollar</option>
+            <option value="MXN">MXN - Mexican Peso</option>
+            <option value="SGD">SGD - Singapore Dollar</option>
+            <option value="HKD">HKD - Hong Kong Dollar</option>
+            <option value="NOK">NOK - Norwegian Krone</option>
+            <option value="KRW">KRW - South Korean Won</option>
+            <option value="TRY">TRY - Turkish Lira</option>
+            <option value="RUB">RUB - Russian Ruble</option>
+            <option value="INR">INR - Indian Rupee</option>
+            <option value="BRL">BRL - Brazilian Real</option>
+            <option value="ZAR">ZAR - South African Rand</option>
+            <option value="AED">AED - UAE Dirham</option>
+            <option value="SAR">SAR - Saudi Arabian Riyal</option>
+            <option value="QAR">QAR - Qatari Riyal</option>
+            <option value="KWD">KWD - Kuwaiti Dinar</option>
+            <option value="BHD">BHD - Bahraini Dinar</option>
+            <option value="OMR">OMR - Omani Rial</option>
+            <option value="JOD">JOD - Jordanian Dinar</option>
+            <option value="ILS">ILS - Israeli Shekel</option>
+            <option value="PKR">PKR - Pakistani Rupee</option>
+            <option value="BDT">BDT - Bangladeshi Taka</option>
+            <option value="LKR">LKR - Sri Lankan Rupee</option>
+            <option value="THB">THB - Thai Baht</option>
+            <option value="MYR">MYR - Malaysian Ringgit</option>
+            <option value="PHP">PHP - Philippine Peso</option>
+            <option value="IDR">IDR - Indonesian Rupiah</option>
+            <option value="VND">VND - Vietnamese Dong</option>
+            <option value="HUF">HUF - Hungarian Forint</option>
+            <option value="CZK">CZK - Czech Koruna</option>
+            <option value="PLN">PLN - Polish Zloty</option>
+            <option value="RON">RON - Romanian Leu</option>
+            <option value="BGN">BGN - Bulgarian Lev</option>
+            <option value="HRK">HRK - Croatian Kuna</option>
+            <option value="ISK">ISK - Icelandic Króna</option>
+            <option value="DKK">DKK - Danish Krone</option>
+            <option value="CLP">CLP - Chilean Peso</option>
+            <option value="COP">COP - Colombian Peso</option>
+            <option value="PEN">PEN - Peruvian Nuevo Sol</option>
+            <option value="ARS">ARS - Argentine Peso</option>
+            <option value="UAH">UAH - Ukrainian Hryvnia</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="calculate-btn" onclick="convertCurrency()">Convert</button>
+      <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
+      <!-- Rate info line (added via JS, no extra HTML needed) -->
+    </form>
+
+    <div class="calculator-results">
+      <div class="result-grid">
+        <div class="result-box">
+          <div class="result-label" id="from-label">1 USD</div>
+          <div class="result-value" id="result-from">1.00</div>
+        </div>
+        <div class="result-box secondary">
+          <div class="result-label" id="to-label">To USD</div>
+          <div class="result-value" id="result-to">0.83</div>
+          <div style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-light);">Exchange Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-space small" style="margin: 2rem 0;">
+      <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
+        <div style="font-size: 0.95rem; color: var(--text-light);">Sponsored: Open an International Account Today</div>
+      </div>
+    </div>
+
+
+    <div class="related-calculators">
+      <h3>Related Calculators</h3>
+      <div class="related-grid">
+        <div class="related-item"><a href="exchange-rates.html">Exchange Rates</a></div>
+        <div class="related-item"><a href="transfer-fee-calculator.html">Transfer Fees</a></div>
+        <div class="related-item"><a href="inflation-tracker.html">Inflation Tracker</a></div>
+      </div>
+    </div>
+  </div>
+ <div style="max-width: 800px; margin: 0 auto;">
+  <div class="faq-section" style="margin-top: 2rem;">
+  <h3 style="margin-bottom: 1.5rem;">❓ How Currency Conversion Works</h3>
+  <div class="faq-item">
+    <button class="faq-question">
+      How do I convert currencies?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p>Enter the amount, choose the currency you have (From) and the currency you want (To). The converter instantly shows the converted amount using the latest exchange rates.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      Where do the exchange rates come from?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p>Rates are fetched automatically from reliable, free APIs and updated regularly. If the API is unavailable, built‑in fallback rates ensure the converter always works.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      Can I trust the displayed rate?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p>Absolutely. The rate is shown on the screen so you can verify it. It’s the mid‑market rate, not a commercial buy/sell rate, so it’s perfect for quick estimates.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      What formula is used?
+      <span class="faq-icon">▼</span>
+    </button>
+    <div class="faq-answer">
+      <p><strong>Converted Amount = Amount × (To Rate / From Rate)</strong><br>
+      All rates are relative to a common base (USD). The division ensures an accurate cross‑rate between any two currencies.</p>
+    </div>
+  </div>
+</div>
+
+  <footer class="footer" style="margin-top: 4rem;">
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
+  </footer>
+  <button class="back-to-top">↑</button>
+
+  <script src="main.js"></script>
+  <script src="share.js"></script>
+  <script src="faq.js"></script>
+  <script>
+    let rates = null;
+    let lastUpdated = '';
+    let rateSource = '';
+
+    // Primary API: Free, no key, updates daily from central banks
+    const PRIMARY_API = 'https://api.exchangerate-api.com/v4/latest/USD';
+    // Fallback API: Free, reliable GitHub-hosted JSON
+    const FALLBACK_API = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.min.json';
+    
+    // Static fallback rates (updated 2025-06)
+    const STATIC_FALLBACK = {
+      USD:1, EUR:0.92, GBP:0.79, JPY:149.50, INR:83.12, AUD:1.53, CAD:1.36, CHF:0.88, CNY:7.24,
+      SEK:10.45, NZD:1.65, MXN:17.05, SGD:1.34, HKD:7.81, NOK:10.52, KRW:1310, TRY:32.50,
+      RUB:95, BRL:4.97, ZAR:18.50, AED:3.67, SAR:3.75, QAR:3.64, KWD:0.31, BHD:0.38,
+      OMR:0.39, JOD:0.71, ILS:3.60, PKR:278, BDT:104.50, LKR:306, THB:35.50, MYR:4.70,
+      PHP:56, IDR:15950, VND:24500, HUF:360, CZK:23.50, PLN:4.00, RON:4.50, BGN:1.80,
+      HRK:6.90, ISK:137, DKK:6.86, CLP:850, COP:3900, PEN:3.75, ARS:835, UAH:40.50
+    };
+
+    // Fetch rates with caching (6 hours)
+    async function fetchRates() {
+      const cache = localStorage.getItem('fx_rates_cache');
+      if (cache) {
+        const parsed = JSON.parse(cache);
+        const age = Date.now() - parsed.timestamp;
+        if (age < 6 * 60 * 60 * 1000) { // 6 hours
+          rates = parsed.rates;
+          lastUpdated = new Date(parsed.timestamp).toLocaleString();
+          rateSource = parsed.source;
+          updateRateInfo();
+          convertCurrency();
+          return;
+        }
+      }
+
+      // Try primary API
+      try {
+        const resp = await fetch(PRIMARY_API);
+        if (!resp.ok) throw new Error('Primary API failed');
+        const data = await resp.json();
+        rates = data.rates;
+        lastUpdated = new Date().toLocaleString();
+        rateSource = 'ExchangeRate-API (updates daily)';
+        cacheRates(rates, rateSource);
+        updateRateInfo();
+        convertCurrency();
+        return;
+      } catch (e) {
+        console.warn('Primary API failed, trying fallback...');
+      }
+
+      // Fallback API
+      try {
+        const resp = await fetch(FALLBACK_API);
+        if (!resp.ok) throw new Error('Fallback API failed');
+        const data = await resp.json();
+        // Transform from {usd: {eur: 0.92}} to {EUR: 0.92, ...}
+        const raw = data.usd;
+        rates = { USD: 1 };
+        for (const [code, rate] of Object.entries(raw)) {
+          rates[code.toUpperCase()] = rate;
+        }
+        lastUpdated = new Date().toLocaleString();
+        rateSource = 'Currency API (open-source, daily)';
+        cacheRates(rates, rateSource);
+        updateRateInfo();
+        convertCurrency();
+        return;
+      } catch (e) {
+        console.warn('Fallback API failed, using static rates.');
+      }
+
+      // Ultimate fallback: static rates
+      rates = STATIC_FALLBACK;
+      lastUpdated = 'Offline fallback rates';
+      rateSource = 'Static fallback (may be slightly outdated)';
+      updateRateInfo();
+      convertCurrency();
+    }
+
+    function cacheRates(rateObj, source) {
+      localStorage.setItem('fx_rates_cache', JSON.stringify({
+        rates: rateObj,
+        timestamp: Date.now(),
+        source: source
+      }));
+    }
+
+    function updateRateInfo() {
+      // Add a small info line below the form if not already present
+      let infoEl = document.getElementById('rate-info');
+      if (!infoEl) {
+        infoEl = document.createElement('div');
+        infoEl.id = 'rate-info';
+        infoEl.className = 'rate-info';
+        const form = document.querySelector('.calculator-form');
+        form.appendChild(infoEl);
+      }
+      infoEl.innerHTML = `📊 Rates from <span class="rate-source">${rateSource}</span> · Last updated: ${lastUpdated}`;
+    }
+
+    function convertCurrency() {
+      if (!rates) {
+        fetchRates();
+        return;
+      }
+      
+      const amount = SmartRate.parseNumberInput(document.getElementById('amount').value) || 1;
+      const from = document.getElementById('from-currency').value;
+      const to = document.getElementById('to-currency').value;
+      
+      if (amount <= 0) return;
+      
+      const fromRate = rates[from] || 1;
+      const toRate = rates[to] || 1;
+      const converted = (amount / fromRate) * toRate;
+      
+      // Update UI with animation
+      const resultGrid = document.querySelector('.calculator-results');
+      resultGrid.classList.add('show');
+      
+      document.getElementById('result-from').textContent = SmartRate.formatNumber(amount) + ' ' + from;
+      document.getElementById('result-to').textContent = SmartRate.formatNumber(converted) + ' ' + to;
+      document.getElementById('from-label').textContent = '1 ' + from + ' =';
+      document.getElementById('to-label').textContent = SmartRate.formatNumber(toRate / fromRate) + ' ' + to;
+      
+      // Subtle animation
+      const boxes = resultGrid.querySelectorAll('.result-box');
+      boxes.forEach(box => {
+        box.classList.add('convert-animate');
+        setTimeout(() => box.classList.remove('convert-animate'), 300);
+      });
+    }
+
+    // Initialize
+    window.addEventListener('load', fetchRates);
+    
+    // Listen to changes
+    document.getElementById('amount').addEventListener('input', convertCurrency);
+    document.getElementById('from-currency').addEventListener('change', convertCurrency);
+    document.getElementById('to-currency').addEventListener('change', convertCurrency);
+    
+    // Re-fetch every 6 hours
+    setInterval(fetchRates, 6 * 60 * 60 * 1000);
+  </script>
+</body>
+</html>
