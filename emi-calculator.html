@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -58,7 +58,7 @@
     <form class="calculator-form" onsubmit="calculateEMI(event)">
       <div class="form-row">
         <div class="form-group">
-          <label for="principal">Loan Amount (₹)</label>
+          <label for="principal">Loan Amount</label>
           <input type="number" id="principal" placeholder="Enter loan amount" min="0" step="1000" required>
           <div class="form-error"></div>
         </div>
@@ -87,9 +87,13 @@
           <div class="result-value" id="result-emi">0</div>
           <div class="result-description">Your fixed monthly payment</div>
         </div>
+        <div class="result-box">
+          <div class="result-label">Total Amount</div>
           <div class="result-value" id="result-total">0</div>
           <div class="result-description">Total amount to be paid</div>
         </div>
+        <div class="result-box">
+          <div class="result-label">Total Interest</div>
           <div class="result-value" id="result-interest">0</div>
           <div class="result-description">Interest paid over loan period</div>
         </div>
@@ -109,7 +113,7 @@
           <h4>Input Values</h4>
           <div class="example-item">
             <span class="example-label">Loan Amount</span>
-            <span class="example-value">₹ 25,00,000</span>
+            <span class="example-value">2,500,000</span>
           </div>
           <div class="example-item">
             <span class="example-label">Interest Rate</span>
@@ -124,15 +128,15 @@
           <h4>Calculated Results</h4>
           <div class="example-item">
             <span class="example-label">Monthly EMI</span>
-            <span class="example-value">₹ 18,485</span>
+            <span class="example-value">18,485</span>
           </div>
           <div class="example-item">
             <span class="example-label">Total Amount</span>
-            <span class="example-value">₹ 44,44,800</span>
+            <span class="example-value">4,444,800</span>
           </div>
           <div class="example-item">
             <span class="example-label">Total Interest</span>
-            <span class="example-value">₹ 19,44,800</span>
+            <span class="example-value">1,944,800</span>
           </div>
         </div>
       </div>
