@@ -1025,6 +1025,7 @@ a:hover { color: var(--accent); }
 
 /* ---------- Results Section ---------- */
 
+/* ========== YOUR EXISTING RESULT STYLES ========== */
 .results {
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
@@ -1061,6 +1062,17 @@ a:hover { color: var(--accent); }
 .result-box.secondary { border-left-color: var(--accent); background: rgba(6, 182, 212, 0.1); }
 .result-box.success { border-left-color: var(--success); background: rgba(16, 185, 129, 0.1); }
 .result-box.warning { border-left-color: var(--warning); background: rgba(245, 158, 11, 0.1); }
+
+/* ========== FIX: Prevent large numbers overflowing cards ========== */
+.result-value {
+  word-break: break-all;       /* break long numbers at any character */
+  overflow-wrap: anywhere;     /* modern alternative */
+  max-width: 100%;             /* never exceed container width */
+  white-space: normal;         /* allow wrapping inside monospace */
+}
+.result-box {
+  overflow: hidden;            /* clip any accidental spill */
+}
 
 /* ---------- Breadcrumb ---------- */
 .breadcrumb {
