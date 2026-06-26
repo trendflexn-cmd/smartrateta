@@ -126,31 +126,27 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe cards and sections
-document.addEventListener('DOMContentLoaded', () => {
+function initObserver() {
   document.querySelectorAll('.card, .category-item, .faq-item').forEach(el => {
     observer.observe(el);
   });
-});
+}
+
+document.addEventListener('DOMContentLoaded', initObserver);
 
 // Utility Functions
+function parseNumberInput(value) {
+  // Remove all commas and whitespace, then parse
+  const cleanedValue = String(value).replace(/,/g, '').trim();
+  return parseFloat(cleanedValue) || 0;
+}
+
 function formatCurrency(value) {
-  // Format with proper Indian numbering system for millions
-  if (isNaN(value)) value = 0;
-  value = Math.round(value * 100) / 100;
-  
-  // Format to 2 decimal places
-  let parts = value.toString().split('.');
-  let integerPart = parts[0];
-  let decimalPart = parts[1] || '00';
-  
-  // Pad decimal to 2 places
-  if (decimalPart.length === 1) decimalPart = decimalPart + '0';
-  if (decimalPart.length > 2) decimalPart = decimalPart.substring(0, 2);
-  
-  // Indian number formatting: 1,23,45,678
-  integerPart = integerPart.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
-  
-  return '₹ ' + integerPart + '.' + decimalPart;
+  // Format as number without currency symbol using standard international format
+  return new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  }).format(value);
 }
 
 // Calculate percentage of a value
@@ -159,28 +155,10 @@ function calculatePercentage(value, percent) {
 }
 
 function formatNumber(value) {
-  // Format with proper Indian numbering system
-  if (isNaN(value)) value = 0;
-  value = Math.round(value * 100) / 100;
-  
-  let parts = value.toString().split('.');
-  let integerPart = parts[0];
-  let decimalPart = parts[1] || '00';
-  
-  if (decimalPart.length === 1) decimalPart = decimalPart + '0';
-  if (decimalPart.length > 2) decimalPart = decimalPart.substring(0, 2);
-  
-  integerPart = integerPart.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
-  
-  return integerPart + '.' + decimalPart;
-}
-
-// Parse number input (handles comma-separated numbers)
-function parseNumberInput(value) {
-  if (typeof value === 'string') {
-    return parseFloat(value.replace(/,/g, ''));
-  }
-  return parseFloat(value) || 0;
+  return new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  }).format(value);
 }
 
 function formatPercent(value) {
@@ -276,5 +254,6 @@ window.SmartRate = {
   clearForm,
   showResults,
   copyToClipboard,
+  parseNumberInput,
   debounce
 };
