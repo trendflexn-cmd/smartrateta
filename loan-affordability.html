@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -46,12 +46,12 @@
     <form class="calculator-form">
       <div class="form-row">
         <div class="form-group">
-          <label for="monthly-income">Monthly Income (₹)</label>
+          <label for="monthly-income">Monthly Income</label>
           <input type="number" id="monthly-income" min="0" step="5000" value="50000" required>
           <div class="form-error"></div>
         </div>
         <div class="form-group">
-          <label for="existing-emi">Existing EMI (₹)</label>
+          <label for="existing-emi">Existing EMI</label>
           <input type="number" id="existing-emi" min="0" step="1000" value="0" required>
           <div class="form-error"></div>
         </div>
@@ -82,8 +82,6 @@
         </div>
       </div>
     </div>
-
-    
 
     <div class="related-calculators">
       <h3>Related Calculators</h3>
@@ -170,7 +168,7 @@
       
       if (result.maxLoan <= 0) {
         document.getElementById('result-max-loan').textContent = 'Not Eligible';
-        document.getElementById('result-available-emi').textContent = '₹ 0';
+        document.getElementById('result-available-emi').textContent = '0';
       } else {
         document.getElementById('result-max-loan').textContent = SmartRate.formatCurrency(result.maxLoan);
         document.getElementById('result-available-emi').textContent = SmartRate.formatCurrency(result.availableEmi);
