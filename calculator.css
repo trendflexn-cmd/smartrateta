@@ -230,10 +230,13 @@
 }
 
 .result-value {
-  font-size: 2.2rem;
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
   font-weight: 800;
   color: var(--primary);
   margin-bottom: 0.25rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .result-box.secondary .result-value {
@@ -464,4 +467,168 @@
   .result-value {
     font-size: 1.8rem;
   }
+}
+/* ===== ENHANCED RESPONSIVE FIXES FOR ALL PHONES ===== */
+
+/* Extra small devices (portrait phones, max 400px) */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+  h1 {
+    font-size: 2.2rem !important;
+  }
+  h2 {
+    font-size: 1.8rem !important;
+  }
+  h3, .section-header h2, .faq-section h3 {
+    font-size: 1.5rem !important;
+  }
+  .hero {
+    padding: 3rem 1rem !important;
+  }
+  .hero h1 {
+    font-size: 2rem !important;
+  }
+  .hero p {
+    font-size: 0.95rem !important;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn, .btn-primary, .btn-secondary {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .card {
+    padding: 1.2rem !important;
+  }
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  .card-title {
+    font-size: 1.2rem;
+  }
+  .card-description {
+    font-size: 0.85rem;
+  }
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+  .navbar-content {
+    gap: 0.8rem;
+  }
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+  .hamburger span {
+    width: 20px;
+  }
+  /* FAQ specific */
+  .faq-question {
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+  .faq-answer p {
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+  }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .footer-section h4 {
+    font-size: 0.9rem;
+  }
+  .newsletter {
+    padding: 2rem 1rem;
+    margin: 1rem;
+  }
+  .newsletter h2 {
+    font-size: 1.6rem;
+  }
+  .newsletter-form {
+    flex-direction: column;
+  }
+  .newsletter-form input, .newsletter-form .btn {
+    width: 100%;
+  }
+  .trusted-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  .stat-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+  .logos-row {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .logo-placeholder {
+    font-size: 0.8rem;
+    padding: 0.3rem 1rem;
+  }
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Very narrow phones (≤400px) */
+@media (max-width: 480px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  .hero h1 {
+    font-size: 1.8rem !important;
+  }
+  .hero-badge {
+    font-size: 0.7rem;
+  }
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+  }
+  .trusted-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Prevent horizontal scroll on all devices */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+img, canvas, iframe, video {
+  max-width: 100%;
+  height: auto;
+}
+.container, .navbar-content, .footer-content {
+  max-width: 100%;
+  overflow-x: hidden;
 }
