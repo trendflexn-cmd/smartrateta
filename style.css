@@ -1024,7 +1024,6 @@ a:hover { color: var(--accent); }
 }
 
 /* ---------- Results Section ---------- */
-
 .results {
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
