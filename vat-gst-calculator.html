@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Calculate VAT and GST on your products and services. Free VAT/GST calculator.">
   <title>VAT/GST Calculator - Smart Rate</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/calculator.css">\
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="calculator.css">
    <!-- AdSense Auto ads – single script for all pages -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
 </head>
@@ -44,7 +44,7 @@
     <form class="calculator-form">
       <div class="form-row">
         <div class="form-group">
-          <label for="amount">Amount (₹)</label>
+          <label for="amount">Amount</label>
           <input type="number" id="amount" min="0" step="100" value="10000" required>
         </div>
         <div class="form-group">
@@ -144,9 +144,9 @@
   </footer>
   <button class="back-to-top">↑</button>
 
-  <script src="js/main.js"></script>
-  <script src="js/share.js"></script>
-  <script src="js/faq.js"></script>
+  <script src="main.js"></script>
+  <script src="share.js"></script>
+  <script src="faq.js"></script>
   <script>
     function calculate() {
       const amount = SmartRate.parseNumberInput(document.getElementById('amount').value);
