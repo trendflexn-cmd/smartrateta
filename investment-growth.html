@@ -9,10 +9,15 @@
   <title>Investment Growth Calculator - Smart Rate</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="calculator.css">
-   <!-- AdSense Auto ads – single script for all pages -->
+  
+  <!-- Existing AdSense Auto ads (works on all pages) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+  
+  <!-- AMP Auto ads script (you requested; only works on AMP pages) -->
+  <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
 </head>
 <body>
+  <!-- Navigation (same as before) -->
   <nav class="navbar">
     <div class="container">
       <div class="navbar-content">
@@ -29,6 +34,7 @@
     </div>
   </nav>
 
+  <!-- Breadcrumb, Calculator Form, Results, FAQ (all exactly as before) -->
   <div class="container py-2">
     <div class="breadcrumb">
       <a href="index.html">Home</a> <span class="breadcrumb-separator">/</span>
@@ -94,61 +100,62 @@
       </div>
     </div>
   </div>
+  
   <div style="max-width: 800px; margin: 0 auto;">
-  <div class="faq-section" style="margin-top: 2rem;">
-    <h3>❓ How Investment Growth Works</h3>
-    <div class="faq-item">
-      <button class="faq-question">
-        What does this calculator show?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>It projects how a one‑time investment grows over a number of years, assuming a fixed annual return rate. You’ll see the final amount, total gain, and overall percentage return.</p>
+    <div class="faq-section" style="margin-top: 2rem;">
+      <h3>❓ How Investment Growth Works</h3>
+      <div class="faq-item">
+        <button class="faq-question">
+          What does this calculator show?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>It projects how a one‑time investment grows over a number of years, assuming a fixed annual return rate. You’ll see the final amount, total gain, and overall percentage return.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        How do I use it?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>Enter your initial investment amount, the expected annual return (e.g., 10% for stock market averages), and the number of years you plan to stay invested. Click Calculate to see the projected result.</p>
+      <div class="faq-item">
+        <button class="faq-question">
+          How do I use it?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Enter your initial investment amount, the expected annual return (e.g., 10% for stock market averages), and the number of years you plan to stay invested. Click Calculate to see the projected result.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        Does it account for volatility or taxes?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>No. The calculator assumes a constant, steady return each year. Real investments fluctuate, and taxes may apply. Use this as a simple projection, not a guaranteed outcome.</p>
+      <div class="faq-item">
+        <button class="faq-question">
+          Does it account for volatility or taxes?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>No. The calculator assumes a constant, steady return each year. Real investments fluctuate, and taxes may apply. Use this as a simple projection, not a guaranteed outcome.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        Can I add regular contributions?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>This calculator models a single lump‑sum investment. If you want to simulate monthly or yearly contributions, try our Savings Goal Tracker or Compound Interest calculator with recurring deposits.</p>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I add regular contributions?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>This calculator models a single lump‑sum investment. If you want to simulate monthly or yearly contributions, try our Savings Goal Tracker or Compound Interest calculator with recurring deposits.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        What formula is used?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p><strong>Final Amount = Initial Investment × (1 + Annual Return/100)<sup>Years</sup></strong><br>
-        <strong>Gain = Final Amount – Initial Investment</strong><br>
-        <strong>Total Return % = (Gain / Initial Investment) × 100</strong></p>
+      <div class="faq-item">
+        <button class="faq-question">
+          What formula is used?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p><strong>Final Amount = Initial Investment × (1 + Annual Return/100)<sup>Years</sup></strong><br>
+          <strong>Gain = Final Amount – Initial Investment</strong><br>
+          <strong>Total Return % = (Gain / Initial Investment) × 100</strong></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <footer class="footer" style="margin-top: 4rem;">
-    <div class="container"><div class="footer-bottom"><p>&copy; 2026 Smart Rate. All rights reserved.</p></div></div>
+    <div class="container"><div class="footer-bottom"><p>&copy; 2024 Smart Rate. All rights reserved.</p></div></div>
   </footer>
   <button class="back-to-top">↑</button>
 
@@ -157,18 +164,35 @@
   <script src="share.js"></script>
   <script src="faq.js"></script>
   <script>
+    // Local helper: standard international number format
+    function formatInternational(num) {
+      return new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      }).format(num);
+    }
+
     function calculateGrowth() {
       const investment = parseFloat(document.getElementById('investment').value);
       const annualReturn = parseFloat(document.getElementById('annual-return').value);
       const years = parseInt(document.getElementById('years').value);
-      
-      const result = Calculators.calculateInvestmentGrowth(investment, annualReturn, years);
-      
-      document.getElementById('result-initial').textContent = SmartRate.formatCurrency(investment);
-      document.getElementById('result-final').textContent = SmartRate.formatCurrency(result.finalAmount);
-      document.getElementById('result-gain').textContent = SmartRate.formatCurrency(result.gain);
-      document.getElementById('result-return').textContent = result.totalReturn.toFixed(2) + '%';
-      
+
+      if (isNaN(investment) || isNaN(annualReturn) || isNaN(years) || years <= 0) {
+        alert('Please enter valid numbers in all fields.');
+        return;
+      }
+
+      // Annual compounding: A = P(1 + r)^t
+      const rate = annualReturn / 100;
+      const finalAmount = investment * Math.pow(1 + rate, years);
+      const gain = finalAmount - investment;
+      const totalReturnPercent = (gain / investment) * 100;
+
+      document.getElementById('result-initial').textContent = formatInternational(investment);
+      document.getElementById('result-final').textContent = formatInternational(finalAmount);
+      document.getElementById('result-gain').textContent = formatInternational(gain);
+      document.getElementById('result-return').textContent = totalReturnPercent.toFixed(2) + '%';
+
       SmartRate.showResults(document.querySelector('.calculator-results'));
     }
   </script>
