@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Check current exchange rates between major currencies.">
+  <meta name="description" content="Check current exchange rates between major currencies – universal, not tied to any single country.">
   <title>Exchange Rates - Smart Rate</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="calculator.css">
@@ -69,14 +69,12 @@
       100% { text-shadow: 0 0 12px rgba(6, 182, 212, 0.6); }
     }
 
-    /* Flag-like currency codes */
     .calculator-container table td:first-child::before {
       content: "💱 ";
       font-size: 0.9em;
       opacity: 0.6;
     }
 
-    /* Live update indicator */
     .calculator-container .rate-note {
       display: flex;
       justify-content: space-between;
@@ -104,16 +102,15 @@
       box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
     }
 
-    /* Override the original container inline styles */
+    /* Override the original container inline styles – theme‑aware */
     .calculator-container > div:first-of-type {
-      background: rgba(15, 23, 42, 0.6) !important;
+      background: var(--bg-glass) !important;
       backdrop-filter: blur(30px) saturate(180%) !important;
       -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
-      border: 1px solid rgba(139, 92, 246, 0.25) !important;
+      border: 1px solid var(--border-light) !important;
       border-radius: 1.2rem !important;
       padding: 2.5rem !important;
       box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(139, 92, 246, 0.15) !important;
-      border-image: none !important;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -122,7 +119,6 @@
       transform: translateY(-2px);
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       .calculator-container table th,
       .calculator-container table td {
@@ -131,8 +127,12 @@
       }
     }
   </style>
-   <!-- AdSense Auto ads – single script for all pages -->
+
+  <!-- Standard AdSense Auto ads (works globally on all pages) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+
+  <!-- AMP Auto ads script (you requested – only works on AMP pages, but added as per your wish) -->
+  <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -162,55 +162,55 @@
   <div class="calculator-container">
     <div class="calculator-header">
       <h1>Exchange Rates</h1>
-      <p>View current exchange rates for major world currencies</p>
+      <p>Current exchange rates for major world currencies – base: US Dollar (USD)</p>
     </div>
 
-    <div style="background: rgba(10, 14, 26, 0.5); backdrop-filter: blur(30px); border: 1px solid rgba(139, 92, 246, 0.2); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; border-image: linear-gradient(135deg, #6366f1, #8b5cf6) 1;">
+    <div style="backdrop-filter: blur(30px); border: 1px solid var(--border-light); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
       <div style="overflow-x: auto;">
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 2px solid rgba(139, 92, 246, 0.3);">
               <th style="text-align: left; padding: 1rem; color: var(--text-primary); font-weight: 600;">Currency</th>
-              <th style="text-align: right; padding: 1rem; color: var(--text-primary); font-weight: 600;">Rate (vs INR)</th>
+              <th style="text-align: right; padding: 1rem; color: var(--text-primary); font-weight: 600;">Rate (1 unit = USD)</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
               <td style="padding: 1rem; color: var(--text-primary);">USD - US Dollar</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">83.12</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">1.000</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
               <td style="padding: 1rem; color: var(--text-primary);">EUR - Euro</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">90.37</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">1.087</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
               <td style="padding: 1rem; color: var(--text-primary);">GBP - British Pound</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">105.19</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">1.265</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
               <td style="padding: 1rem; color: var(--text-primary);">JPY - Japanese Yen</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">0.56</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">0.00674</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
               <td style="padding: 1rem; color: var(--text-primary);">AUD - Australian Dollar</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">54.35</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">0.654</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
               <td style="padding: 1rem; color: var(--text-primary);">CAD - Canadian Dollar</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">61.06</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">0.734</td>
             </tr>
             <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
               <td style="padding: 1rem; color: var(--text-primary);">SGD - Singapore Dollar</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">61.97</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">0.745</td>
             </tr>
             <tr>
               <td style="padding: 1rem; color: var(--text-primary);">AED - UAE Dirham</td>
-              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">22.64</td>
+              <td style="text-align: right; padding: 1rem; font-weight: 600; color: var(--accent);">0.272</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem; text-align: center;">Last updated: June 1, 2026 | Rates are indicative and may vary | <a href="currency-converter.html" style="color: var(--primary); text-decoration: none;">Live Converter →</a></p>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">Last updated: June 1, 2026 | Mid‑market rates for reference | <a href="currency-converter.html" style="color: var(--primary); text-decoration: none;">Live Converter →</a></p>
     </div>
 
     <div class="related-calculators">
@@ -222,56 +222,57 @@
       </div>
     </div>
   </div>
+  
   <div style="max-width: 800px; margin: 0 auto;">
-  <div class="faq-section" style="margin-top: 2rem;">
-    <h3>❓ How Exchange Rates Work</h3>
-    <div class="faq-item">
-      <button class="faq-question">
-        How do I read the exchange rates table?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>The table shows how much 1 unit of each foreign currency is worth in Indian Rupees (INR). For example, if USD shows 83.12, it means 1 US Dollar = ₹83.12.</p>
+    <div class="faq-section" style="margin-top: 2rem;">
+      <h3>❓ How Exchange Rates Work</h3>
+      <div class="faq-item">
+        <button class="faq-question">
+          How do I read the exchange rates table?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>The table shows how much 1 unit of each foreign currency is worth in US Dollars (USD). For example, if EUR shows 1.087, it means 1 Euro = 1.087 USD.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        Are these rates live or fixed?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>The rates displayed are indicative mid‑market rates, updated regularly. They are not real‑time trading rates, but they are accurate enough for budgeting and quick reference. Use the Currency Converter for live conversions.</p>
+      <div class="faq-item">
+        <button class="faq-question">
+          Are these rates live or fixed?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>The rates displayed are indicative mid‑market rates, updated regularly. They are accurate enough for budgeting and quick reference. Use the Currency Converter for live conversions.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        What does “vs INR” mean?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>All rates are shown relative to the Indian Rupee (INR). So each number tells you how many rupees equal one unit of the foreign currency.</p>
+      <div class="faq-item">
+        <button class="faq-question">
+          What does “1 unit = USD” mean?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>All rates are shown relative to the US Dollar (USD). So each number tells you how many US Dollars equal one unit of the foreign currency. For example, GBP 1.265 = £1 buys $1.265.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        Can I use these rates for actual money transfers?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>These are mid‑market rates – the true midpoint between buy and sell. Banks and transfer services add a margin (spread) and fees, so the final amount you pay or receive will be slightly different. For exact costs, use our Transfer Fee Calculator.</p>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I use these rates for actual money transfers?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>These are mid‑market rates – the true midpoint between buy and sell. Banks and transfer services add a margin (spread) and fees, so the final amount you pay or receive will be slightly different. For exact costs, use our Transfer Fee Calculator.</p>
+        </div>
       </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        How often are the rates updated?
-        <span class="faq-icon">▼</span>
-      </button>
-      <div class="faq-answer">
-        <p>This page uses manually updated rates for demonstration. In a production environment, we fetch live rates via API every few seconds. You can check the footer for the last update date.</p>
+      <div class="faq-item">
+        <button class="faq-question">
+          How often are the rates updated?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>This page uses manually updated rates for demonstration. In a production environment, we fetch live rates via API every few seconds. You can check the footer for the last update date.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <footer class="footer" style="margin-top: 4rem;">
     <div class="container"><div class="footer-bottom"><p>&copy; 2026 Smart Rate. All rights reserved.</p></div></div>
