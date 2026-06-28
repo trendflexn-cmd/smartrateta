@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -71,8 +71,10 @@
       }
     }
   </style>
-   <!-- AdSense Auto ads – single script for all pages -->
+  <!-- Standard AdSense Auto ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+  <!-- AMP Auto ads script (you requested) -->
+  <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -136,7 +138,6 @@
             <option value="KRW">KRW - South Korean Won</option>
             <option value="TRY">TRY - Turkish Lira</option>
             <option value="RUB">RUB - Russian Ruble</option>
-            <option value="INR">INR - Indian Rupee</option>
             <option value="BRL">BRL - Brazilian Real</option>
             <option value="ZAR">ZAR - South African Rand</option>
             <option value="AED">AED - UAE Dirham</option>
@@ -192,7 +193,6 @@
             <option value="KRW">KRW - South Korean Won</option>
             <option value="TRY">TRY - Turkish Lira</option>
             <option value="RUB">RUB - Russian Ruble</option>
-            <option value="INR">INR - Indian Rupee</option>
             <option value="BRL">BRL - Brazilian Real</option>
             <option value="ZAR">ZAR - South African Rand</option>
             <option value="AED">AED - UAE Dirham</option>
@@ -229,7 +229,7 @@
       </div>
       <button type="button" class="calculate-btn" onclick="convertCurrency()">Convert</button>
       <button type="reset" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Clear</button>
-      <!-- Rate info line (added via JS, no extra HTML needed) -->
+      <!-- Rate info line will be appended by JS -->
     </form>
 
     <div class="calculator-results">
@@ -246,13 +246,7 @@
       </div>
     </div>
 
-    <div class="ad-space small" style="margin: 2rem 0;">
-      <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column;">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
-        <div style="font-size: 0.95rem; color: var(--text-light);">Sponsored: Open an International Account Today</div>
-      </div>
-    </div>
-
+    <!-- Manual "Sponsored" ad block REMOVED as requested -->
 
     <div class="related-calculators">
       <h3>Related Calculators</h3>
@@ -263,47 +257,49 @@
       </div>
     </div>
   </div>
- <div style="max-width: 800px; margin: 0 auto;">
-  <div class="faq-section" style="margin-top: 2rem;">
-  <h3 style="margin-bottom: 1.5rem;">❓ How Currency Conversion Works</h3>
-  <div class="faq-item">
-    <button class="faq-question">
-      How do I convert currencies?
-      <span class="faq-icon">▼</span>
-    </button>
-    <div class="faq-answer">
-      <p>Enter the amount, choose the currency you have (From) and the currency you want (To). The converter instantly shows the converted amount using the latest exchange rates.</p>
+
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div class="faq-section" style="margin-top: 2rem;">
+      <h3 style="margin-bottom: 1.5rem;">❓ How Currency Conversion Works</h3>
+      <div class="faq-item">
+        <button class="faq-question">
+          How do I convert currencies?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Enter the amount, choose the currency you have (From) and the currency you want (To). The converter instantly shows the converted amount using the latest exchange rates.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Where do the exchange rates come from?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Rates are fetched automatically from reliable, free APIs and updated regularly. If the API is unavailable, built‑in fallback rates ensure the converter always works.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I trust the displayed rate?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely. The rate is shown on the screen so you can verify it. It’s the mid‑market rate, not a commercial buy/sell rate, so it’s perfect for quick estimates.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What formula is used?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p><strong>Converted Amount = Amount × (To Rate / From Rate)</strong><br>
+          All rates are relative to a common base (USD). The division ensures an accurate cross‑rate between any two currencies.</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="faq-item">
-    <button class="faq-question">
-      Where do the exchange rates come from?
-      <span class="faq-icon">▼</span>
-    </button>
-    <div class="faq-answer">
-      <p>Rates are fetched automatically from reliable, free APIs and updated regularly. If the API is unavailable, built‑in fallback rates ensure the converter always works.</p>
-    </div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question">
-      Can I trust the displayed rate?
-      <span class="faq-icon">▼</span>
-    </button>
-    <div class="faq-answer">
-      <p>Absolutely. The rate is shown on the screen so you can verify it. It’s the mid‑market rate, not a commercial buy/sell rate, so it’s perfect for quick estimates.</p>
-    </div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question">
-      What formula is used?
-      <span class="faq-icon">▼</span>
-    </button>
-    <div class="faq-answer">
-      <p><strong>Converted Amount = Amount × (To Rate / From Rate)</strong><br>
-      All rates are relative to a common base (USD). The division ensures an accurate cross‑rate between any two currencies.</p>
-    </div>
-  </div>
-</div>
 
   <footer class="footer" style="margin-top: 4rem;">
     <div class="container"><div class="footer-bottom"><p>&copy; 2026 Smart Rate. All rights reserved.</p></div></div>
@@ -318,12 +314,9 @@
     let lastUpdated = '';
     let rateSource = '';
 
-    // Primary API: Free, no key, updates daily from central banks
     const PRIMARY_API = 'https://api.exchangerate-api.com/v4/latest/USD';
-    // Fallback API: Free, reliable GitHub-hosted JSON
     const FALLBACK_API = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.min.json';
     
-    // Static fallback rates (updated 2025-06)
     const STATIC_FALLBACK = {
       USD:1, EUR:0.92, GBP:0.79, JPY:149.50, INR:83.12, AUD:1.53, CAD:1.36, CHF:0.88, CNY:7.24,
       SEK:10.45, NZD:1.65, MXN:17.05, SGD:1.34, HKD:7.81, NOK:10.52, KRW:1310, TRY:32.50,
@@ -333,13 +326,12 @@
       HRK:6.90, ISK:137, DKK:6.86, CLP:850, COP:3900, PEN:3.75, ARS:835, UAH:40.50
     };
 
-    // Fetch rates with caching (6 hours)
     async function fetchRates() {
       const cache = localStorage.getItem('fx_rates_cache');
       if (cache) {
         const parsed = JSON.parse(cache);
         const age = Date.now() - parsed.timestamp;
-        if (age < 6 * 60 * 60 * 1000) { // 6 hours
+        if (age < 6 * 60 * 60 * 1000) {
           rates = parsed.rates;
           lastUpdated = new Date(parsed.timestamp).toLocaleString();
           rateSource = parsed.source;
@@ -349,7 +341,6 @@
         }
       }
 
-      // Try primary API
       try {
         const resp = await fetch(PRIMARY_API);
         if (!resp.ok) throw new Error('Primary API failed');
@@ -365,12 +356,10 @@
         console.warn('Primary API failed, trying fallback...');
       }
 
-      // Fallback API
       try {
         const resp = await fetch(FALLBACK_API);
         if (!resp.ok) throw new Error('Fallback API failed');
         const data = await resp.json();
-        // Transform from {usd: {eur: 0.92}} to {EUR: 0.92, ...}
         const raw = data.usd;
         rates = { USD: 1 };
         for (const [code, rate] of Object.entries(raw)) {
@@ -386,7 +375,6 @@
         console.warn('Fallback API failed, using static rates.');
       }
 
-      // Ultimate fallback: static rates
       rates = STATIC_FALLBACK;
       lastUpdated = 'Offline fallback rates';
       rateSource = 'Static fallback (may be slightly outdated)';
@@ -403,7 +391,6 @@
     }
 
     function updateRateInfo() {
-      // Add a small info line below the form if not already present
       let infoEl = document.getElementById('rate-info');
       if (!infoEl) {
         infoEl = document.createElement('div');
@@ -431,7 +418,6 @@
       const toRate = rates[to] || 1;
       const converted = (amount / fromRate) * toRate;
       
-      // Update UI with animation
       const resultGrid = document.querySelector('.calculator-results');
       resultGrid.classList.add('show');
       
@@ -440,7 +426,6 @@
       document.getElementById('from-label').textContent = '1 ' + from + ' =';
       document.getElementById('to-label').textContent = SmartRate.formatNumber(toRate / fromRate) + ' ' + to;
       
-      // Subtle animation
       const boxes = resultGrid.querySelectorAll('.result-box');
       boxes.forEach(box => {
         box.classList.add('convert-animate');
@@ -448,15 +433,12 @@
       });
     }
 
-    // Initialize
     window.addEventListener('load', fetchRates);
     
-    // Listen to changes
     document.getElementById('amount').addEventListener('input', convertCurrency);
     document.getElementById('from-currency').addEventListener('change', convertCurrency);
     document.getElementById('to-currency').addEventListener('change', convertCurrency);
     
-    // Re-fetch every 6 hours
     setInterval(fetchRates, 6 * 60 * 60 * 1000);
   </script>
 </body>
