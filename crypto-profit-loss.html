@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="calculator.css">
    <!-- AdSense Auto ads – single script for all pages -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5783997886626637" crossorigin="anonymous"></script>
+
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
 </head>
 <body>
   <nav class="navbar">
@@ -140,9 +144,9 @@
   </footer>
   <button class="back-to-top">↑</button>
 
-  <script src="js/main.js"></script>
-  <script src="js/share.js"></script>
-  <script src="js/faq.js"></script>
+  <script src="main.js"></script>
+  <script src="share.js"></script>
+  <script src="faq.js"></script>
   <script>
     function calculate() {
       const quantity = SmartRate.parseNumberInput(document.getElementById('quantity').value);
