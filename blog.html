@@ -712,21 +712,29 @@
 
     async function fetchFullArticleText(url) {
       if (!url || !/^https?:\/\//i.test(url)) return '';
-      const proxyUrl = `https://r.jina.ai/http://${url.replace(/^https?:\/\//i, '')}`;
-      const response = await fetch(proxyUrl, { headers: { Accept: 'text/plain' } });
-      if (!response.ok) throw new Error('Full article fetch failed');
-      const text = await response.text();
-      const marker = 'Markdown Content:';
-      const start = text.indexOf(marker);
-      const body = start >= 0 ? text.slice(start + marker.length) : text;
-      return body
-        .replace(/^Title:.*$/gim, '')
-        .replace(/^URL Source:.*$/gim, '')
-        .replace(/^Published Time:.*$/gim, '')
-        .replace(/^Warning:.*$/gim, '')
-        .replace(/^\s*[-*]\s*/gm, '')
-        .replace(/\n{3,}/g, '\n\n')
-        .trim();
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 1800);
+      try {
+        const proxyUrl = `https://r.jina.ai/http://${url.replace(/^https?:\/\//i, '')}`;
+        const response = await fetch(proxyUrl, { headers: { Accept: 'text/plain' }, signal: controller.signal });
+        if (!response.ok) return '';
+        const text = await response.text();
+        const marker = 'Markdown Content:';
+        const start = text.indexOf(marker);
+        const body = start >= 0 ? text.slice(start + marker.length) : text;
+        return body
+          .replace(/^Title:.*$/gim, '')
+          .replace(/^URL Source:.*$/gim, '')
+          .replace(/^Published Time:.*$/gim, '')
+          .replace(/^Warning:.*$/gim, '')
+          .replace(/^\s*[-*]\s*/gm, '')
+          .replace(/\n{3,}/g, '\n\n')
+          .trim();
+      } catch (error) {
+        return '';
+      } finally {
+        window.clearTimeout(timeoutId);
+      }
     }
 
     function buildStoryMarkup(text) {
@@ -845,19 +853,26 @@
       document.body.style.overflow = 'hidden';
 
       let storyContent = '';
+      const shortSummary = article.body || article.description || article.summary || '';
+      const preferredBody = typeof article.bodyHtml === 'string' && article.bodyHtml.trim()
+        ? article.bodyHtml
+        : shortSummary;
+      const fallbackMarkup = buildStoryMarkup(preferredBody || 'No detailed text was returned by the feed, but the story is ready to read in this premium experience.');
+
       try {
-        const shortSummary = article.body || article.description || article.summary || '';
-        if (isShortStory(shortSummary) && article.link) {
-          const fullText = await fetchFullArticleText(article.link);
-          storyContent = fullText ? buildStoryMarkup(fullText) : buildStoryMarkup(shortSummary);
+        if (article.link && isShortStory(shortSummary)) {
+          const fullText = await Promise.race([
+            fetchFullArticleText(article.link),
+            new Promise(resolve => setTimeout(() => resolve(''), 1800))
+          ]);
+          storyContent = fullText && String(fullText).trim()
+            ? buildStoryMarkup(fullText)
+            : fallbackMarkup;
         } else {
-          const preferredBody = typeof article.bodyHtml === 'string' && article.bodyHtml.trim()
-            ? article.bodyHtml
-            : shortSummary;
-          storyContent = buildStoryMarkup(preferredBody || 'No detailed text was returned by the feed, but the story is ready to read in this premium experience.');
+          storyContent = fallbackMarkup;
         }
       } catch (error) {
-        storyContent = buildStoryMarkup(article.body || article.description || article.summary || 'No detailed text was returned by the feed, but the story is ready to read in this premium experience.');
+        storyContent = fallbackMarkup;
       }
 
       content.innerHTML = `
