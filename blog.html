@@ -521,7 +521,7 @@
   </footer>
   <button class="back-to-top">↑</button>
 
-  <script src="js/main.js"></script>
+  <script src="main.js"></script>
   <script src="js/share.js"></script>
   <script>
     let currentPage = 1;
@@ -554,12 +554,24 @@
     };
 
     async function fetchRSSFeed(url) {
-      const rss2jsonApi = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
-      const response = await fetch(rss2jsonApi);
-      if (!response.ok) throw new Error('RSS fetch failed');
-      const data = await response.json();
-      if (data.status !== 'ok') throw new Error('RSS parse error');
-      return data.items || [];
+      const candidates = [
+        `https://r.jina.ai/http://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`)}`
+      ];
+
+      for (const endpoint of candidates) {
+        try {
+          const response = await fetch(endpoint, { headers: { Accept: 'application/json, text/plain' } });
+          if (!response.ok) continue;
+          const text = await response.text();
+          const data = JSON.parse(text);
+          if (data.status === 'ok') return data.items || [];
+        } catch (error) {
+          continue;
+        }
+      }
+
+      throw new Error('RSS fetch failed');
     }
 
     function getSkeletonMarkup(count = 6) {
@@ -718,23 +730,41 @@
     }
 
     function buildStoryMarkup(text) {
-      const clean = String(text || '').trim();
-      if (!clean) return '<p>No full article body was returned by the feed.</p>';
-      const plainText = clean
+      const rawText = String(text || '');
+      const temp = document.createElement('div');
+      temp.innerHTML = rawText;
+
+      temp.querySelectorAll('script, style, iframe').forEach(node => node.remove());
+      temp.querySelectorAll('a').forEach(node => {
+        const replacement = document.createTextNode(node.textContent || '');
+        node.replaceWith(replacement);
+      });
+
+      const clean = (temp.textContent || temp.innerText || rawText)
+        .replace(/\r/g, '')
         .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
         .replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1')
+        .replace(/!\[[^\]]*\]\([^)]+\)/g, '')
         .replace(/\*\*([^*]+)\*\*/g, '$1')
         .replace(/\*([^*]+)\*/g, '$1')
         .replace(/_([^_]+)_/g, '$1')
         .replace(/`([^`]+)`/g, '$1')
-        .replace(/\n{3,}/g, '\n\n');
-      const paragraphs = plainText
+        .replace(/^\s*(?:Image|Photo|Getty Images|Read more|View more)\b.*$/gim, '')
+        .replace(/^\s*[-•]\s*/gm, '')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+
+      if (!clean) return '<p>No full article body was returned by the feed.</p>';
+
+      const paragraphs = clean
         .split(/\n{2,}/)
         .map(item => item.replace(/\s+/g, ' ').trim())
         .filter(Boolean)
+        .filter(item => item.length > 20)
         .map(item => `<p>${escapeHtml(item)}</p>`)
         .join('');
-      return paragraphs || `<p>${escapeHtml(plainText)}</p>`;
+
+      return paragraphs || `<p>${escapeHtml(clean.replace(/\s+/g, ' ').trim())}</p>`;
     }
 
     function stripHtml(value) {
@@ -821,9 +851,10 @@
           const fullText = await fetchFullArticleText(article.link);
           storyContent = fullText ? buildStoryMarkup(fullText) : buildStoryMarkup(shortSummary);
         } else {
-          storyContent = typeof article.bodyHtml === 'string' && article.bodyHtml.trim().startsWith('<')
+          const preferredBody = typeof article.bodyHtml === 'string' && article.bodyHtml.trim()
             ? article.bodyHtml
-            : buildStoryMarkup(article.body || article.description || article.summary || 'No detailed text was returned by the feed, but the story is ready to read in this premium experience.');
+            : shortSummary;
+          storyContent = buildStoryMarkup(preferredBody || 'No detailed text was returned by the feed, but the story is ready to read in this premium experience.');
         }
       } catch (error) {
         storyContent = buildStoryMarkup(article.body || article.description || article.summary || 'No detailed text was returned by the feed, but the story is ready to read in this premium experience.');
