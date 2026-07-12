@@ -19,36 +19,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Navbar Toggle
 function initNavbar() {
-  if (!hamburger) return;
-  
-  hamburger.addEventListener('click', () => {
-    navbar.classList.toggle('active');
-    hamburger.classList.toggle('active');
+  if (!hamburger || !navbar) return;
+
+  const closeMenu = () => {
+    navbar.classList.remove('active');
+    hamburger.classList.remove('active');
+    body.classList.remove('nav-open');
+  };
+
+  hamburger.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const shouldOpen = !navbar.classList.contains('active');
+    navbar.classList.toggle('active', shouldOpen);
+    hamburger.classList.toggle('active', shouldOpen);
+    body.classList.toggle('nav-open', shouldOpen);
   });
-  
-  // Close menu when clicking on a link
-  const navLinks = navbar?.querySelectorAll('a');
-  navLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      navbar.classList.remove('active');
-      hamburger.classList.remove('active');
-    });
+
+  navbar.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!navbar.classList.contains('active')) return;
+    const clickInsideMenu = navbar.contains(event.target) || hamburger.contains(event.target);
+    if (!clickInsideMenu) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeMenu();
+    }
   });
 }
 
 // Dark Mode Theme – respects system preference, manual override
 function initTheme() {
-  // 1. Check if user already manually picked a theme (stored)
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    setTheme(savedTheme, false); // don't save again, already stored
-  } else {
-    // 2. No manual preference → follow system setting
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(prefersDark ? 'dark' : 'light', false);
-  }
-  
-  // 3. Listen for system theme changes (only if user hasn't overridden)
+  const preferredTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  setTheme(preferredTheme, false);
+
   const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   darkModeMediaQuery.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
@@ -56,7 +67,6 @@ function initTheme() {
     }
   });
 
-  // 4. Toggle button: manual override, save preference
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       const currentTheme = body.getAttribute('data-theme') || 'light';
@@ -126,27 +136,31 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe cards and sections
-function initObserver() {
+document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.card, .category-item, .faq-item').forEach(el => {
     observer.observe(el);
   });
-}
-
-document.addEventListener('DOMContentLoaded', initObserver);
+});
 
 // Utility Functions
-function parseNumberInput(value) {
-  // Remove all commas and whitespace, then parse
-  const cleanedValue = String(value).replace(/,/g, '').trim();
-  return parseFloat(cleanedValue) || 0;
-}
-
 function formatCurrency(value) {
-  // Format as number without currency symbol using standard international format
-  return new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2
-  }).format(value);
+  // Format with proper Indian numbering system for millions
+  if (isNaN(value)) value = 0;
+  value = Math.round(value * 100) / 100;
+  
+  // Format to 2 decimal places
+  let parts = value.toString().split('.');
+  let integerPart = parts[0];
+  let decimalPart = parts[1] || '00';
+  
+  // Pad decimal to 2 places
+  if (decimalPart.length === 1) decimalPart = decimalPart + '0';
+  if (decimalPart.length > 2) decimalPart = decimalPart.substring(0, 2);
+  
+  // Indian number formatting: 1,23,45,678
+  integerPart = integerPart.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+  
+  return '₹ ' + integerPart + '.' + decimalPart;
 }
 
 // Calculate percentage of a value
@@ -155,10 +169,28 @@ function calculatePercentage(value, percent) {
 }
 
 function formatNumber(value) {
-  return new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2
-  }).format(value);
+  // Format with proper Indian numbering system
+  if (isNaN(value)) value = 0;
+  value = Math.round(value * 100) / 100;
+  
+  let parts = value.toString().split('.');
+  let integerPart = parts[0];
+  let decimalPart = parts[1] || '00';
+  
+  if (decimalPart.length === 1) decimalPart = decimalPart + '0';
+  if (decimalPart.length > 2) decimalPart = decimalPart.substring(0, 2);
+  
+  integerPart = integerPart.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+  
+  return integerPart + '.' + decimalPart;
+}
+
+// Parse number input (handles comma-separated numbers)
+function parseNumberInput(value) {
+  if (typeof value === 'string') {
+    return parseFloat(value.replace(/,/g, ''));
+  }
+  return parseFloat(value) || 0;
 }
 
 function formatPercent(value) {
@@ -254,6 +286,5 @@ window.SmartRate = {
   clearForm,
   showResults,
   copyToClipboard,
-  parseNumberInput,
   debounce
 };
